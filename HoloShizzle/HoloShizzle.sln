@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoloShizzle", "HoloShizzle.csproj", "{05A932D2-31C6-B21E-CD95-7147A457EEE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoloShizzle.Plugins", "HoloShizzle.Plugins.csproj", "{E6270F06-49E0-8590-18AC-89A8A6C4A2BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoloShizzle.Editor", "HoloShizzle.Editor.csproj", "{1333D89A-F876-5EA6-16EF-AE4132D563D5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{05A932D2-31C6-B21E-CD95-7147A457EEE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05A932D2-31C6-B21E-CD95-7147A457EEE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05A932D2-31C6-B21E-CD95-7147A457EEE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05A932D2-31C6-B21E-CD95-7147A457EEE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6270F06-49E0-8590-18AC-89A8A6C4A2BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6270F06-49E0-8590-18AC-89A8A6C4A2BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6270F06-49E0-8590-18AC-89A8A6C4A2BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6270F06-49E0-8590-18AC-89A8A6C4A2BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1333D89A-F876-5EA6-16EF-AE4132D563D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1333D89A-F876-5EA6-16EF-AE4132D563D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1333D89A-F876-5EA6-16EF-AE4132D563D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1333D89A-F876-5EA6-16EF-AE4132D563D5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
