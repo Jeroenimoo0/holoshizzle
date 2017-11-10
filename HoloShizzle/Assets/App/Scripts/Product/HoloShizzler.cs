@@ -1,9 +1,19 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HoloShizzler : MonoBehaviour {
+
+    [System.Serializable]
+    public class ItemModel
+    {
+        public string itemId;
+        public GameObject model;
+    }
+
+    public ItemModel[] models;
 
     [SerializeField]
     private GameObject productPrefab;
@@ -54,6 +64,13 @@ public class HoloShizzler : MonoBehaviour {
 
             var gameObject = Instantiate(productPrefab);
             var product = gameObject.GetComponent<Product>();
+
+            var model = Array.Find(models, (modelItem) => modelItem.itemId == id);
+
+            if(model != null)
+            {
+                Instantiate(model.model, gameObject.transform);
+            }
 
             product.description = item._embedded.product.description;
             product.id = id;
