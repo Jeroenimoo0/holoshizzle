@@ -15,8 +15,8 @@ public class FloorConfirmer : MonoBehaviour
         Messenger.Instance.AddListener<PositionFoundMessage>(ProcessMessage);
         Reset();
 #if UNITY_EDITOR
-        _lastReceivedMessage =  new PositionFoundMessage(new Vector3(0, -1.6f, 0));
-        ResendMessage(true);
+       // _lastReceivedMessage =  new PositionFoundMessage(new Vector3(0, -1.6f, 0));
+    //    ResendMessage(true);
 #endif
     }
 
