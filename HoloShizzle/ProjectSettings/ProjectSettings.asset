@@ -520,7 +520,7 @@ PlayerSettings:
   metroCertificatePassword: 
   metroCertificateSubject: DefaultCompany
   metroCertificateIssuer: DefaultCompany
-  metroCertificateNotAfter: 80bff98b1d79d401
+  metroCertificateNotAfter: 80d4ed103079d401
   metroApplicationDescription: HoloShizzle
   wsaImages: {}
   metroTileShortName: 
