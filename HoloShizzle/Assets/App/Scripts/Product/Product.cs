@@ -10,4 +10,5 @@ public class Product : MonoBehaviour {
     public string unitSize;
     public string brandName;
     public string[] categories;
+    public string[] infos;
 }

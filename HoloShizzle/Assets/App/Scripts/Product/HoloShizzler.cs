@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class HoloShizzler : MonoBehaviour {
@@ -31,13 +32,13 @@ public class HoloShizzler : MonoBehaviour {
 
             yield return request;
 
-            var root = JsonConvert.DeserializeObject<Generated.RootObject>(request.text);
+            var root = JsonConvert.DeserializeObject<GeneratedItemList.RootObject>(request.text);
 
             foreach(var lane in root._embedded.lanes)
             {
                 if(lane.type == "ShoppingListLane")
                 {
-                    UpdateProductList(lane._embedded.items);
+                    yield return UpdateProductList(lane._embedded.items);
                 }
             }
 
@@ -45,7 +46,7 @@ public class HoloShizzler : MonoBehaviour {
         }
 	}
 
-    private void UpdateProductList(List<Generated.Item> items)
+    private IEnumerator UpdateProductList(List<GeneratedItemList.Item> items)
     {
         // Add loop
         foreach (var item in items)
@@ -72,8 +73,50 @@ public class HoloShizzler : MonoBehaviour {
                 Instantiate(model.model, gameObject.transform);
             }
 
+            var www = new WWW("https://www.ah.nl/service/rest/delegate?url=" + item.navItem.link.href);
+
+            yield return www;
+            //Debug.Log(www.text);
+
+            var test = JsonConvert.DeserializeObject<GeneratedItemInfo.RootObject>(www.text);
+
+            var infosList = new List<string>();
+
+            foreach (var lane in test._embedded.lanes)
+            {
+                if(lane.type == "StoryLane")
+                {
+                    foreach(var item2 in lane._embedded.items)
+                    {
+                        if(item2._embedded.sections[0]._embedded.content[0].text != null && item2._embedded.sections[0]._embedded.content[0].text.title == "Voedingswaarden")
+                        {
+                            var firstRegex = new Regex(@"\[[\[\]a-z\/]{1,}\]([\.A-Z a-z0-9]{1,})");
+                            var regex = new Regex(@"\[[\[\]a-z\/]{1,}\]([\.A-Z a-z0-9]{1,})[\[\]a-z\/]{1,}([\.A-Z a-z0-9()]{1,})");
+
+                            var body = item2._embedded.sections[0]._embedded.content[2].text.body;
+
+                            var perWhat = firstRegex.Match(body).Groups[1];
+                            infosList.Add(perWhat.ToString());
+
+                            body = firstRegex.Replace(body, "", 1);
+
+                            var matches = regex.Matches(body);
+
+                            foreach(Match match in matches)
+                            {
+                                infosList.Add(match.Groups[1] + ": " + match.Groups[2]);
+                            }
+
+                            goto exitLoop;
+                        }
+                    }
+                }
+            }
+            exitLoop:
+
             product.description = item._embedded.product.description;
             product.id = id;
+            product.infos = infosList.ToArray();
 
             Debug.Log("Adding " + product.description);
 
@@ -104,7 +147,412 @@ public class HoloShizzler : MonoBehaviour {
         }
     }
 
-    public class Generated
+    public class GeneratedItemInfo
+    {
+        public class Item
+        {
+            public string name { get; set; }
+            public string content { get; set; }
+        }
+
+        public class MetaTags
+        {
+            public List<Item> items { get; set; }
+            public string label { get; set; }
+        }
+
+        public class Parameters
+        {
+            public string ah_order_mode { get; set; }
+            public string ah_regtype { get; set; }
+            public string ah_site { get; set; }
+            public string ah_state { get; set; }
+            public string name { get; set; }
+            public string ns__t { get; set; }
+            public string ns_c { get; set; }
+            public string ns_jspageurl { get; set; }
+            public string ns_ti { get; set; }
+            public string ns_referrer { get; set; }
+        }
+
+        public class Analytics
+        {
+            public string baseUrl { get; set; }
+            public Parameters parameters { get; set; }
+            public string label { get; set; }
+        }
+
+        public class Page
+        {
+            public string type { get; set; }
+            public string taxonomyNodes { get; set; }
+            public string label { get; set; }
+        }
+
+        public class Meta
+        {
+            public MetaTags metaTags { get; set; }
+            public Analytics analytics { get; set; }
+            public Page page { get; set; }
+        }
+
+        public class Self
+        {
+            public string href { get; set; }
+        }
+
+        public class Links
+        {
+            public Self self { get; set; }
+        }
+
+        public class ColorScheme
+        {
+            public string baseColor { get; set; }
+            public bool inverted { get; set; }
+        }
+
+        public class Link
+        {
+            public string href { get; set; }
+        }
+
+        public class Image
+        {
+            public string title { get; set; }
+            public int width { get; set; }
+            public int height { get; set; }
+            public Link link { get; set; }
+        }
+
+        public class Link2
+        {
+            public string href { get; set; }
+            public string pageType { get; set; }
+        }
+
+        public class NavItem
+        {
+            public Link2 link { get; set; }
+            public string title { get; set; }
+        }
+
+        public class Tag
+        {
+            public string text { get; set; }
+        }
+
+        public class Link3
+        {
+            public string href { get; set; }
+        }
+
+        public class Image2
+        {
+            public int width { get; set; }
+            public int height { get; set; }
+            public Link3 link { get; set; }
+        }
+
+        public class Link4
+        {
+            public string href { get; set; }
+            public string pageType { get; set; }
+            public string target { get; set; }
+        }
+
+        public class NavItem2
+        {
+            public Link4 link { get; set; }
+        }
+
+        public class Shop
+        {
+            public string title { get; set; }
+            public string description { get; set; }
+            public Tag tag { get; set; }
+            public Image2 image { get; set; }
+            public NavItem2 navItem { get; set; }
+        }
+
+        public class Autosuggest
+        {
+            public string href { get; set; }
+        }
+
+        public class Search
+        {
+            public string href { get; set; }
+            public string pageType { get; set; }
+        }
+
+        public class SeoBreadcrumb
+        {
+            public string title { get; set; }
+            public string url { get; set; }
+        }
+
+        public class Add
+        {
+            public string href { get; set; }
+            public string method { get; set; }
+        }
+
+        public class Links2
+        {
+            public Add add { get; set; }
+        }
+
+        public class Analytics2
+        {
+            public string originCode { get; set; }
+        }
+
+        public class Availability
+        {
+            public bool orderable { get; set; }
+            public string label { get; set; }
+        }
+
+        public class PriceLabel
+        {
+            public double now { get; set; }
+        }
+
+        public class Link5
+        {
+            public string href { get; set; }
+        }
+
+        public class Image3
+        {
+            public string title { get; set; }
+            public int width { get; set; }
+            public int height { get; set; }
+            public Link5 link { get; set; }
+        }
+
+        public class Details
+        {
+            public string unitOfUseSize { get; set; }
+            public string summary { get; set; }
+            public string seoDescription { get; set; }
+        }
+
+        public class Product
+        {
+            public string id { get; set; }
+            public string description { get; set; }
+            public string unitSize { get; set; }
+            public string brandName { get; set; }
+            public string categoryName { get; set; }
+            public Availability availability { get; set; }
+            public PriceLabel priceLabel { get; set; }
+            public List<Image3> images { get; set; }
+            public Details details { get; set; }
+        }
+
+        public class Link6
+        {
+            public string href { get; set; }
+            public string pageType { get; set; }
+        }
+
+        public class NavItem3
+        {
+            public Link6 link { get; set; }
+        }
+
+        public class Add2
+        {
+            public string href { get; set; }
+            public string method { get; set; }
+        }
+
+        public class Links3
+        {
+            public Add2 add { get; set; }
+        }
+
+        public class Analytics3
+        {
+            public string originCode { get; set; }
+            public string crossSellParentId { get; set; }
+        }
+
+        public class Availability2
+        {
+            public bool orderable { get; set; }
+            public string label { get; set; }
+        }
+
+        public class PriceLabel2
+        {
+            public double now { get; set; }
+        }
+
+        public class Link7
+        {
+            public string href { get; set; }
+        }
+
+        public class Image4
+        {
+            public string title { get; set; }
+            public int width { get; set; }
+            public int height { get; set; }
+            public Link7 link { get; set; }
+        }
+
+        public class Product2
+        {
+            public string id { get; set; }
+            public string description { get; set; }
+            public string unitSize { get; set; }
+            public string brandName { get; set; }
+            public string categoryName { get; set; }
+            public Availability2 availability { get; set; }
+            public PriceLabel2 priceLabel { get; set; }
+            public List<Image4> images { get; set; }
+        }
+
+        public class Embedded4
+        {
+            public Analytics3 analytics { get; set; }
+            public Product2 product { get; set; }
+        }
+
+        public class Item3
+        {
+            public NavItem3 navItem { get; set; }
+            public string foldOutChannelId { get; set; }
+            public string resourceType { get; set; }
+            public string type { get; set; }
+            public Links3 _links { get; set; }
+            public string context { get; set; }
+            public string viewType { get; set; }
+            public Embedded4 _embedded { get; set; }
+        }
+
+        public class Link8
+        {
+            public string href { get; set; }
+            public string pageType { get; set; }
+        }
+
+        public class NavItem4
+        {
+            public string title { get; set; }
+            public Link8 link { get; set; }
+        }
+
+        public class Embedded5
+        {
+            public object filterItems { get; set; }
+        }
+
+        public class Filter
+        {
+            public string label { get; set; }
+            public NavItem4 navItem { get; set; }
+            public bool sorted { get; set; }
+            public Embedded5 _embedded { get; set; }
+        }
+
+        public class Text
+        {
+            public string title { get; set; }
+            public string body { get; set; }
+            public string subtitle { get; set; }
+        }
+
+        public class Content
+        {
+            public Text text { get; set; }
+            public string resourceType { get; set; }
+            public string type { get; set; }
+        }
+
+        public class Embedded6
+        {
+            public List<Content> content { get; set; }
+        }
+
+        public class Section
+        {
+            public string resourceType { get; set; }
+            public string type { get; set; }
+            public Embedded6 _embedded { get; set; }
+        }
+
+        public class Embedded3
+        {
+            public Analytics2 analytics { get; set; }
+            public Product product { get; set; }
+            public List<Item3> items { get; set; }
+            public List<Filter> filters { get; set; }
+            public List<object> breadcrumbs { get; set; }
+            public List<Section> sections { get; set; }
+        }
+
+        public class Item2
+        {
+            public string id { get; set; }
+            public Image image { get; set; }
+            public NavItem navItem { get; set; }
+            public string title { get; set; }
+            public string resourceType { get; set; }
+            public string type { get; set; }
+            public List<Shop> shops { get; set; }
+            public Autosuggest autosuggest { get; set; }
+            public Search search { get; set; }
+            public string searchType { get; set; }
+            public List<string> frequentProductSearchTerms { get; set; }
+            public string color { get; set; }
+            public string backgroundColor { get; set; }
+            public List<SeoBreadcrumb> seoBreadcrumb { get; set; }
+            public string foldOutChannelId { get; set; }
+            public Links2 _links { get; set; }
+            public string context { get; set; }
+            public string viewType { get; set; }
+            public Embedded3 _embedded { get; set; }
+            public bool? expanded { get; set; }
+            public int? value { get; set; }
+            public string body { get; set; }
+        }
+
+        public class Embedded2
+        {
+            public List<Item2> items { get; set; }
+        }
+
+        public class Lane
+        {
+            public string id { get; set; }
+            public bool gutter { get; set; }
+            public bool expanded { get; set; }
+            public ColorScheme colorScheme { get; set; }
+            public string type { get; set; }
+            public Embedded2 _embedded { get; set; }
+            public string layout { get; set; }
+            public string backgroundColor { get; set; }
+        }
+
+        public class Embedded
+        {
+            public List<Lane> lanes { get; set; }
+        }
+
+        public class RootObject
+        {
+            public string title { get; set; }
+            public Meta _meta { get; set; }
+            public Links _links { get; set; }
+            public Embedded _embedded { get; set; }
+        }
+    }
+
+    public class GeneratedItemList
     {
         public class ShoppingContext2
         {
@@ -320,6 +768,8 @@ public class HoloShizzler : MonoBehaviour {
 
         public class Link5
         {
+            public string href { get; set; }
+            public string pageType { get; set; }
         }
 
         public class Item
