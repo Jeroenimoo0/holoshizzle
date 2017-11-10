@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -908,6 +908,7 @@ GameObject:
   - component: {fileID: 2092431027}
   - component: {fileID: 2092431026}
   - component: {fileID: 2092431029}
+  - component: {fileID: 2092431028}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -1048,6 +1049,23 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
+  - Keyword: reset
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2092431028}
+          m_MethodName: SendReset
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
   IsGlobalListener: 0
   PersistentKeywords: 0
 --- !u!114 &2092431024
@@ -1071,6 +1089,8 @@ MonoBehaviour:
   - Keyword: okay
     KeyCode: 0
   - Keyword: yaa
+    KeyCode: 0
+  - Keyword: reset
     KeyCode: 0
   recognitionConfidenceLevel: 1
 --- !u!114 &2092431025
@@ -1173,6 +1193,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01e9bb4edb0f2b54d8edff39d4d07b54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2092431028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2092431018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87cd915572de08246a76323e6d2cfc4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &2092431029
