@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using HoloToolkitExtensions.Messaging;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +25,8 @@ public class HoloShizzler : MonoBehaviour {
 
 	private IEnumerator Start ()
     {
+        Messenger.Instance.AddListener<ResetMessage>(DoReset);
+
         var headers = new Dictionary<string, string>();
         headers.Add("Cookie", "rxVisitor=1491476043930BF7KE70FTURH128KU26Q59CMGT2R7HEN; cookies-accepted=1.5; SSOD=ANwWAAAAAAA4ADYAhiAAAAFodaGOAUb7484BdgtaZwG63flKAapj0SUB9bsf3AG33-ZYA2vf49YBq5qo6wFbMMKq; __gads=ID=373dd39870c756d1:T=1504017357:S=ALNI_Mboa9A8m3VyLD_TNFqovVOZWBQ4-w; ui_scaling=size_s%20size_m%20size_l%20size_xl%20size_xxl; __cfduid=d2514e3b3ad9f345a90544f817f2996331504621787; rxVisitor=1495444244141VO7K85K2MVLI780O35K3UHT568DS99PB; dtPC=-; dtLatC=1; dtSa=-; dtCookie=1$CF0B2AC4E2DB795198E234556D025397|_default|1|RUM+Default+Application|1; SSLB=0; SSID=CAA3cB0AACAAAABFHuZYbZ9BAEUe5lghAAAAAAAAAAAAZmcFWgBUmgIBAAAUAQAAbAEAAEwBAAB0AQAASgEAAIQBAAAvAQAA; SSSC=4.G6405840801686986605.33|0.0; SSRT=ZmcFWgADAQ; SSPV=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA; TS0163d06f=01b71d1f1cc6927361be7633be0fb68bd2259f146d4ad8e47a093caa765416e14e79bfd2b017555ad6351517f84b1d5f4c1523a2c24878c7a4d73502e727c874b86d9cee7c0da7db39ac55720e61767d10039098e51d434fdac66f6e1de6182c68d4c4c412a4d6eeacb8b30dc5f0c81ae56340542d; gaClientId=805377975.1504017338; JSESSIONID=EBB51B51B543278351D4D06968845EDD.ahws_4; TS01fb4f52_77=5292_29fde4b20c1f7230_rsb_0_rs_%2Fmijn%2Fuitloggen_rs_1_rs_0; ahold_presumed_member_no=55439162_CHK2wzC0ZuEgawjNLVZd7Ll2w%3D%3D; ahold_sso_status=55439162.1.1.20171110103613000.59AAD58BE1AFBC431F5448899FA2FA3F-ahws-1.20171110103613581.629204_CHKDT55Avw%2BF1T1OfPaFWwkOw%3D%3D; _gat_mainTracker=1; _gat_initialTracker=1; dtSa=-; _ga=GA1.2.805377975.1504017338; _gid=GA1.2.2128296364.1510150943; dtPC=107898270_620h1; dtCookie=F9DA03182381A61ADB1D7F29B987CFA9|d3d3LmFoLm5sfDE; TS01fb4f52=01b71d1f1c48d75530ad9789c61b9bec1b1efaf6124d7cfee90fb63a10c5cfa363e20cedf3987c4e07ba35d1ba31805077e0ecaeea6aa119552c82d96137dd4d6075a5352675aac3d13327b1c782bd9c09ff635ba7f238959aeab1f8271baf4f70129c14540c2fa07c9e30fc2fe165eef7354b77d8c06060d1ab0536f79eabb820cef91299221265e94873fa6e50c6b8b0ff95baac; TS0172c9cf=01b71d1f1c10edbbaf31eb77cc88b17fce161a5ab9b288d477994ab542f6e1b765be9f71f9a44772b59007dd1c23c2391c3b445ee0; dtLatC=5");
 
@@ -47,6 +50,16 @@ public class HoloShizzler : MonoBehaviour {
             yield return new WaitForSeconds(1.0f);
         }
 	}
+
+    private void DoReset(ResetMessage message)
+    {
+        foreach(var product in _products)
+        {
+            Destroy(product.gameObject);
+        }
+
+        _products.Clear();
+    }
 
     private IEnumerator UpdateProductList(List<GeneratedItemList.Item> items)
     {
