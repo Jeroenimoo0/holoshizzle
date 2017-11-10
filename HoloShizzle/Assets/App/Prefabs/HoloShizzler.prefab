@@ -56,6 +56,8 @@ MonoBehaviour:
     model: {fileID: 1859506758600832, guid: 28a81975092113b44a3ba2a62b640be7, type: 2}
   - itemId: wi127393
     model: {fileID: 1432939015697352, guid: 073ac1108e512c94dab9c8a86f4b6198, type: 2}
+  - itemId: wi130273
+    model: {fileID: 1805265295689372, guid: 152d1cac4ae18dc479f5ff87b549dde2, type: 2}
   spawnPosition: {fileID: 0}
   productPrefab: {fileID: 1407985914275328, guid: f978bec2d1a01744d984f46972735082,
     type: 2}
