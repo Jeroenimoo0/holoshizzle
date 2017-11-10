@@ -12,7 +12,8 @@ public class FloorConfirmer : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Messenger.Instance.AddListener<PositionFoundMessage>(ProcessMessage);
+        Messenger.Instance.AddListener<PositionFoundMessage>(ProcessMapMessage);
+        Messenger.Instance.AddListener<ButtonClickMessage>(ProcessClickMessage);
         Reset();
 #if UNITY_EDITOR
        // _lastReceivedMessage =  new PositionFoundMessage(new Vector3(0, -1.6f, 0));
@@ -49,7 +50,7 @@ public class FloorConfirmer : MonoBehaviour
         }
     }
 
-    private void ProcessMessage(PositionFoundMessage message)
+    private void ProcessMapMessage(PositionFoundMessage message)
     {
         _lastReceivedMessage = message;
         if (message.Status != PositionFoundStatus.Unprocessed)
@@ -61,6 +62,12 @@ public class FloorConfirmer : MonoBehaviour
             ConfirmObject.SetActive(true);
             ConfirmObject.transform.position = message.Location + Vector3.up * 0.05f;
         }
+    }
+
+    private void ProcessClickMessage(ButtonClickMessage msg)
+    {
+        if(msg.ClickedObject.name == "YesButton") Accept();
+        if(msg.ClickedObject.name == "NoButton") Reject();
     }
 
 

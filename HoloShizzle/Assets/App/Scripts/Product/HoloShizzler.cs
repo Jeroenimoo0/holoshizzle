@@ -32,6 +32,7 @@ public class HoloShizzler : MonoBehaviour {
             var request = new WWW("https://www.ah.nl/service/rest/delegate?url=%2Fmijnlijst&_=1510307898401", null, headers);
 
             yield return request;
+            Debug.Log(request.text);
 
             var root = JsonConvert.DeserializeObject<GeneratedItemList.RootObject>(request.text);
 
@@ -88,7 +89,6 @@ public class HoloShizzler : MonoBehaviour {
             var www = new WWW("https://www.ah.nl/service/rest/delegate?url=" + item.navItem.link.href);
 
             yield return www;
-            //Debug.Log(www.text);
 
             var test = JsonConvert.DeserializeObject<GeneratedItemInfo.RootObject>(www.text);
 
@@ -126,9 +126,14 @@ public class HoloShizzler : MonoBehaviour {
             }
             exitLoop:
 
+            var imgTest = new WWW(item._embedded.product.images[0].link.href);
+
+            yield return imgTest;
+
             product.description = item._embedded.product.description;
             product.id = id;
-            product.infos = infosList.ToArray();
+            product.Infos = infosList.ToArray();
+            product.GetComponentInChildren<MeshRenderer>().material.SetTexture("_MainTex", imgTest.texture);
 
             Debug.Log("Adding " + product.description);
 
