@@ -37,6 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4651280900463356}
   - component: {fileID: 95670015677709842}
+  - component: {fileID: 65604213448545916}
   m_Layer: 0
   m_Name: MountainDew
   m_TagString: Untagged
@@ -140,6 +141,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1179150883096962}
   m_Mesh: {fileID: 4300000, guid: f0491d5f9809f384396035cd51f3600b, type: 3}
+--- !u!65 &65604213448545916
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1346941467621076}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.010360063, y: 0.017161427, z: 0.009926051}
+  m_Center: {x: 0.00025907793, y: 0.0027307495, z: -0.00029564204}
 --- !u!95 &95670015677709842
 Animator:
   serializedVersion: 3

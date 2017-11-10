@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4065067966614158}
   - component: {fileID: 33353937340305544}
   - component: {fileID: 23612340828495036}
+  - component: {fileID: 65091541505167680}
   m_Layer: 0
   m_Name: banana
   m_TagString: Untagged
@@ -80,3 +81,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1432939015697352}
   m_Mesh: {fileID: 4300000, guid: 31072aecca4136b4cbc0099f4cce0350, type: 3}
+--- !u!65 &65091541505167680
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1432939015697352}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.958348, y: 2.0109303, z: 8.742412}
+  m_Center: {x: 0.045389935, y: 0.99, z: -0.87664086}

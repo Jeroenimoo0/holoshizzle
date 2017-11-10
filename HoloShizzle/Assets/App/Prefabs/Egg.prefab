@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4555214242663788}
   - component: {fileID: 33848145950989840}
   - component: {fileID: 23375523847558370}
+  - component: {fileID: 65078232749339708}
   m_Layer: 0
   m_Name: Egg
   m_TagString: Untagged
@@ -80,3 +81,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1805265295689372}
   m_Mesh: {fileID: 4300000, guid: 1206010fde3c5c7439fea305216b6fb3, type: 3}
+--- !u!65 &65078232749339708
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1805265295689372}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.035414334, y: 0.03555815, z: 0.045954943}
+  m_Center: {x: 9.110719e-10, y: -0.0014012126, z: 0.0016772354}

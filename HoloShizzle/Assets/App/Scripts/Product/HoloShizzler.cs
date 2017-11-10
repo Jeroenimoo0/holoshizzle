@@ -137,6 +137,7 @@ public class HoloShizzler : MonoBehaviour {
 
             if (model != null)
             {
+                Destroy(product.GetComponentInChildren<MeshRenderer>().gameObject);
                 Instantiate(model.model, gameObject.transform);
             }
 
