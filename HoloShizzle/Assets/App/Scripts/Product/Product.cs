@@ -11,4 +11,13 @@ public class Product : MonoBehaviour {
     public string brandName;
     public string[] categories;
     public string[] infos;
+
+    private void Update()
+    {
+        if(transform.position.y < -5)
+        {
+            transform.position = FindObjectOfType<HoloShizzler>().spawnPosition.transform.position;
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
+    }
 }

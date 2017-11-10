@@ -15,6 +15,7 @@ public class HoloShizzler : MonoBehaviour {
     }
 
     public ItemModel[] models;
+    public GameObject spawnPosition;
 
     [SerializeField]
     private GameObject productPrefab;
@@ -63,7 +64,18 @@ public class HoloShizzler : MonoBehaviour {
             }
             if (found) continue;
 
-            var gameObject = Instantiate(productPrefab);
+            Vector3 spawnPos;
+
+            if(spawnPosition != null)
+            {
+                spawnPos = spawnPosition.transform.position;
+            }
+            else
+            {
+                spawnPos = Vector3.zero;
+            }
+
+            var gameObject = Instantiate(productPrefab, spawnPos, Quaternion.identity);
             var product = gameObject.GetComponent<Product>();
 
             var model = Array.Find(models, (modelItem) => modelItem.itemId == id);
