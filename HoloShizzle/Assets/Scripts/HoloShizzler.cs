@@ -76,6 +76,7 @@ public class HoloShizzler : MonoBehaviour {
                 }
             }
 
+
             if(!found)
             {
                 Debug.Log("Removing " + existingProduct.description);
