@@ -43,6 +43,8 @@ public class HoloShizzler : MonoBehaviour {
             {
                 if(lane.type == "ShoppingListLane")
                 {
+                    if (!spawnPosition.activeInHierarchy) break;
+
                     yield return UpdateProductList(lane._embedded.items);
                 }
             }
@@ -80,24 +82,9 @@ public class HoloShizzler : MonoBehaviour {
 
             Vector3 spawnPos;
 
-            if(spawnPosition != null)
-            {
-                spawnPos = spawnPosition.transform.position;
-            }
-            else
-            {
-                spawnPos = Vector3.zero;
-            }
+            spawnPos = spawnPosition.transform.position + new Vector3(UnityEngine.Random.Range(-0.2f, 0.2f), 0.6f, UnityEngine.Random.Range(-0.2f, 0.2f));
 
-            var gameObject = Instantiate(productPrefab, spawnPos, Quaternion.identity);
-            var product = gameObject.GetComponent<Product>();
-
-            var model = Array.Find(models, (modelItem) => modelItem.itemId == id);
-
-            if(model != null)
-            {
-                Instantiate(model.model, gameObject.transform);
-            }
+            Debug.Log(spawnPos);
 
             var www = new WWW("https://www.ah.nl/service/rest/delegate?url=" + item.navItem.link.href);
 
@@ -142,6 +129,16 @@ public class HoloShizzler : MonoBehaviour {
             var imgTest = new WWW(item._embedded.product.images[0].link.href);
 
             yield return imgTest;
+
+            var gameObject = Instantiate(productPrefab, spawnPos, Quaternion.identity);
+            var product = gameObject.GetComponent<Product>();
+
+            var model = Array.Find(models, (modelItem) => modelItem.itemId == id);
+
+            if (model != null)
+            {
+                Instantiate(model.model, gameObject.transform);
+            }
 
             product.description = item._embedded.product.description;
             product.id = id;
