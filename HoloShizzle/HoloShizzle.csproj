@@ -90,6 +90,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\App\Scripts\BasketInitializer.cs" />
     <Compile Include="Assets\App\Scripts\ConfirmSoundRinger.cs" />
     <Compile Include="Assets\App\Scripts\FloorConfirmer.cs" />
     <Compile Include="Assets\App\Scripts\FloorFinder.cs" />
