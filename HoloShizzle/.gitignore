@@ -1,4 +1,7 @@
 Library
 Temp
-UWP
 .vs
+*.csproj
+*.*.csproj
+*.sln
+UWP
