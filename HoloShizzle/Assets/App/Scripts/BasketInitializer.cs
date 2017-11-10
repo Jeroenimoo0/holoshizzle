@@ -13,7 +13,7 @@ public class BasketInitializer : MonoBehaviour
 	void Start ()
 	{
         Messenger.Instance.AddListener<PositionFoundMessage>(ProcessMessage);
-	    Basket.SetActive(false);
+	    if( Basket != null) Basket.SetActive(false);
 	}
 
     private void ProcessMessage(PositionFoundMessage msg)

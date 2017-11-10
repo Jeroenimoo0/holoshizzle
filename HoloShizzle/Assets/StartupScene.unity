@@ -118,7 +118,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 105812195}
-  - component: {fileID: 105812196}
   m_Layer: 0
   m_Name: BasketHolder
   m_TagString: Untagged
@@ -140,18 +139,6 @@ Transform:
   m_Father: {fileID: 1342958812}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &105812196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 105812194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61ccc2b103ea1f74dbefc1750b8c2253, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Basket: {fileID: 105812194}
 --- !u!1001 &386392619
 Prefab:
   m_ObjectHideFlags: 0
@@ -191,6 +178,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011154029958, guid: 2ed75ffdf9031c94e8bce4b3d17b9928,
+        type: 2}
+      propertyPath: surfaceMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: df172103f5fba4a4d8636aeca60cb0d7, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2ed75ffdf9031c94e8bce4b3d17b9928, type: 2}
   m_IsPrefabParent: 0
@@ -305,6 +297,11 @@ Prefab:
         type: 2}
       propertyPath: m_Text
       value: "Kijk naar de plek waar \nje het mandje wilt zetten\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 102455812702276332, guid: 9307a7b869bd38b41a4f965f6f9d0587,
+        type: 2}
+      propertyPath: m_Color.rgba
+      value: 4293041979
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9307a7b869bd38b41a4f965f6f9d0587, type: 2}
@@ -440,7 +437,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1647029568}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.025, z: 0}
+  m_LocalPosition: {x: 0, y: 0.25, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 105812195}
@@ -614,6 +611,11 @@ Prefab:
 
         Zeg ja of nee'
       objectReference: {fileID: 0}
+    - target: {fileID: 102796889399450730, guid: 76dacdf5835791a48bd3cd6912eac7d7,
+        type: 2}
+      propertyPath: m_Color.rgba
+      value: 4293041979
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 76dacdf5835791a48bd3cd6912eac7d7, type: 2}
   m_IsPrefabParent: 0
@@ -643,7 +645,7 @@ GameObject:
   - component: {fileID: 2092431023}
   - component: {fileID: 2092431027}
   - component: {fileID: 2092431026}
-  - component: {fileID: 2092431028}
+  - component: {fileID: 2092431029}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -911,7 +913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01e9bb4edb0f2b54d8edff39d4d07b54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2092431028
+--- !u!114 &2092431029
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -922,7 +924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61ccc2b103ea1f74dbefc1750b8c2253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Basket: {fileID: 0}
+  Basket: {fileID: 105812194}
 --- !u!1001 &2116373767
 Prefab:
   m_ObjectHideFlags: 0
