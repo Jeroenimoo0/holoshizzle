@@ -173,6 +173,8 @@ public class HoloShizzler : MonoBehaviour {
                 Destroy(existingProduct.gameObject);
             }
         }
+
+        yield return new WaitForSeconds(0.25f);
     }
 
     public class GeneratedItemInfo

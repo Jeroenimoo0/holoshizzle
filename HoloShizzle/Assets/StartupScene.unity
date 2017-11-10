@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1090,12 +1090,12 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: yaa
+  - Keyword: restart
     Response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 2092431020}
-          m_MethodName: Accept
+        - m_Target: {fileID: 2092431028}
+          m_MethodName: SendReset
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1149,6 +1149,8 @@ MonoBehaviour:
   - Keyword: yaa
     KeyCode: 0
   - Keyword: reset
+    KeyCode: 0
+  - Keyword: restart
     KeyCode: 0
   recognitionConfidenceLevel: 1
 --- !u!114 &2092431025
